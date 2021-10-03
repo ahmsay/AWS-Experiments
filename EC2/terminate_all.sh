@@ -6,4 +6,4 @@ ids=$(aws ec2 describe-instances --filters="Name=instance-state-name,Values=pend
 # terminate them all
 aws ec2 terminate-instances --instance-ids $ids
 
-# attached volumes are deleted as well
+# root volumes are automatically deleted as well
