@@ -1,0 +1,43 @@
+apiVersion: eksctl.io/v1alpha5
+metadata:
+  name: test-cluster
+  region: eu-central-1
+  version: "1.24"
+kind: ClusterConfig
+availabilityZones:
+- eu-central-1a
+- eu-central-1b
+- eu-central-1c
+cloudWatch:
+  clusterLogging: {}
+fargateProfiles:
+- name: fp-default
+  selectors:
+  - namespace: default
+  - namespace: kube-system
+  status: ""
+iam:
+  vpcResourceControllerPolicy: true
+  withOIDC: false
+kubernetesNetworkConfig:
+  ipFamily: IPv4
+privateCluster:
+  enabled: false
+  skipEndpointCreation: false
+vpc:
+  autoAllocateIPv6: false
+  cidr: 192.168.0.0/16
+  clusterEndpoints:
+    privateAccess: false
+    publicAccess: true
+  manageSharedNodeSecurityGroupRules: true
+  nat:
+    gateway: Single
+addons:
+- name: vpc-cni
+  attachPolicyARNs:
+    - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+- name: coredns
+  version: latest
+- name: kube-proxy
+  version: latest
