@@ -15,10 +15,18 @@ fargateProfiles:
   selectors:
   - namespace: default
   - namespace: kube-system
+  - namespace: cert-manager
   status: ""
 iam:
   vpcResourceControllerPolicy: true
-  withOIDC: false
+  withOIDC: true
+#  serviceAccounts:
+#  - metadata:
+#      name: aws-load-balancer-controller
+#      namespace: kube-system
+#    attachPolicyARNs:
+#    - "arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy"
+#    roleName: AmazonEKSLoadBalancerControllerRole
 kubernetesNetworkConfig:
   ipFamily: IPv4
 privateCluster:
@@ -35,6 +43,7 @@ vpc:
     gateway: Single
 addons:
 - name: vpc-cni
+  version: latest
   attachPolicyARNs:
     - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
 - name: coredns
