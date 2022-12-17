@@ -12,9 +12,14 @@ managedNodeGroups:
 - name: ng-1
   privateNetworking: true
   instanceType: t3.large
+  amiFamily: Bottlerocket
   minSize: 2
   maxSize: 5
   desiredCapacity: 3
+vpc:
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: true
 iam:
   withOIDC: true
 addons:
