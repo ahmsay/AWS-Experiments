@@ -16,6 +16,7 @@ managedNodeGroups:
   minSize: 2
   maxSize: 5
   desiredCapacity: 3
+  volumeSize: 10
 vpc:
   clusterEndpoints:
     publicAccess: true
