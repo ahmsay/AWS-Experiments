@@ -3,7 +3,7 @@ kind: ClusterConfig
 metadata:
   name: test-cluster
   region: eu-central-1
-  version: "1.24"
+  version: "1.27"
 availabilityZones:
 - eu-central-1a
 - eu-central-1b
